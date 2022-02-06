@@ -6,6 +6,7 @@ export const Filter = () => {
   const onFilter = (e) => {
     store.dispatch(setFilter(e.target.value));
   };
+
   return (
     <div>
       <label>

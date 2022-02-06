@@ -24,9 +24,13 @@ const slice = createSlice({
     setFilter: (state, { payload }) => {
       state.filter = payload;
     },
+    setContacts: (state, { payload }) => {
+      state.contacts = payload;
+    },
   },
 });
 
-export const { addContact, deleteContact, setFilter } = slice.actions;
+export const { addContact, deleteContact, setFilter, setContacts } =
+  slice.actions;
 
 export default slice.reducer;

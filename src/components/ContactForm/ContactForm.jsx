@@ -1,22 +1,21 @@
 import React from "react";
-import { addContact } from "../../features/contacts";
-import { store } from "../../app/store";
+import { usePostContactMutation } from "./../../utils/api.js";
 
 console.clear();
 
 const ContactForm = () => {
-  const submitForm = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const { name, number } = e.target;
-    store.dispatch(
-      addContact({ name: name.value, number: Number(number.value) })
-    );
-    form.reset();
-  };
+  const [data] = usePostContactMutation();
 
   return (
-    <form onSubmit={submitForm}>
+    <form
+      onSubmit={(e) => {
+        const form = e.target;
+        const name = form.name.value;
+        const phone = form.number.value;
+        e.preventDefault();
+        form.reset();
+        return data({ name, phone });
+      }}>
       <label>
         Name
         <input
